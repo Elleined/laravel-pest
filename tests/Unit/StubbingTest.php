@@ -13,17 +13,24 @@ class AuthenticationServiceImpl implements AuthenticationService
     }
 }
 
-class AuthenticationController {
-    public function __construct(private AuthenticationService $authenticationService)
-    { }
+class AuthenticationController
+{
+    public function __construct(private AuthenticationService $authenticationService) {}
 
-    public function verify(string $hashPassword, string $rawPassword): string {
+    public function login(string $hashPassword, string $rawPassword): string
+    {
         $isPasswordMatch = $this->authenticationService->isPasswordMatch($hashPassword, $rawPassword);
-        if ($isPasswordMatch) return 'Login Success';
+
+        if ($isPasswordMatch) {
+            return 'Login Success';
+        }
+
         return 'Invalid Credentials';
     }
 }
 
-test('example', function () {
-    // Test implementation here
+describe('tests/Unit/StubbingTest.php', function () {
+    test('unit test name', function () {
+        // Test implementation here
+    });
 });
