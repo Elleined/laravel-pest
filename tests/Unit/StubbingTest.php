@@ -1,5 +1,7 @@
 <?php
 
+use Mockery;
+
 interface AuthenticationService
 {
     public function isPasswordMatch(string $hashPassword, string $rawPassword): bool;
@@ -30,7 +32,56 @@ class AuthenticationController
 }
 
 describe('tests/Unit/StubbingTest.php', function () {
-    test('unit test name', function () {
-        // Test implementation here
+    test('Should return Invalid credentials', function () {
+        // Dummy values
+        // Expected values
+
+        // Argument values to call the real method
+        $isPasswordMatch = false;
+
+        // Spies or mocks
+        $authenticationService = mock(AuthenticationService::class);
+        $authenticationService
+            ->shouldReceive('isPasswordMatch')
+            ->once()
+            ->andReturn($isPasswordMatch);
+
+        // Real method call (actual value)
+        $authenticationController = new AuthenticationController($authenticationService);
+        $response = $authenticationController->login(Mockery::type('string'), Mockery::type('string'));
+
+        // Return type and data type assertions or expectation
+        expect($response)->toBe('Invalid credentials');
+
+        // Spies and mocks return type assertions and method call verifications
+        $authenticationService
+            ->shouldHaveReceived('isPasswordMatch')
+            ->once();
+    });
+
+    test('Should return Login success', function () {
+        // Dummy values
+        // Expected values
+
+        // Argument values to call the real method
+        $isPasswordMatch = true;
+
+        // Spies or mocks
+        $authenticationService = mock(AuthenticationService::class);
+        $authenticationService
+            ->shouldReceive('isPasswordMatch')
+            ->andReturn($isPasswordMatch);
+
+        // Real method call (actual value)
+        $authenticationController = new AuthenticationController($authenticationService);
+        $response = $authenticationController->login(Mockery::type('string'), Mockery::type('string'));
+
+        // Return type and data type assertions or expectation
+        expect($response)->toBe('Login success');
+
+        // Spies and mocks return type assertions and method call verifications
+        $authenticationService
+            ->shouldHaveReceived('isPasswordMatch')
+            ->once();
     });
 });
