@@ -51,7 +51,7 @@ describe('tests/Unit/StubbingTest.php', function () {
         $response = $authenticationController->login(Mockery::type('string'), Mockery::type('string'));
 
         // Return type and data type assertions or expectation
-        expect($response)->toBe('Invalid credentials');
+        expect($response)->toBe('Invalid Credentials');
 
         // Spies and mocks return type assertions and method call verifications
         $authenticationService
@@ -77,7 +77,7 @@ describe('tests/Unit/StubbingTest.php', function () {
         $response = $authenticationController->login(Mockery::type('string'), Mockery::type('string'));
 
         // Return type and data type assertions or expectation
-        expect($response)->toBe('Login success');
+        expect($response)->toBe('Login Success');
 
         // Spies and mocks return type assertions and method call verifications
         $authenticationService
