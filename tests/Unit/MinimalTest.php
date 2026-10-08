@@ -2,19 +2,8 @@
 
 namespace App\Enums;
 
+use App\Grade;
 use Exception;
-
-/**
- * Represents the possible letter grades.
- */
-enum Grade
-{
-    case A;
-    case B;
-    case C;
-    case D;
-    case F;
-}
 
 /**
  * Calculates a letter grade based on a numeric score ranging from 0 to 100.
